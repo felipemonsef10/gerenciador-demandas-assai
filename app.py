@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+URL_TRIZY = os.getenv('URL_TRIZY', '')
 TOKEN = os.getenv('TOKEN', '')
 PATH_SAVE_DEMANDAS = Path(os.getenv('PATH_SAVE_DEMANDAS', ''))
 NAME_FILE_OUTPUT = 'demandas.csv'
@@ -24,7 +25,7 @@ try:
 
         ler_demandas.clear()
         fluxo_busca_demandas.clear() 
-        fluxo_busca_demandas(TOKEN, PATH_TO_SAVE_DEMANDAS)
+        fluxo_busca_demandas(URL_TRIZY, TOKEN, PATH_TO_SAVE_DEMANDAS)
         st.success('Demandas atualizadas')
         st.write()
 except Exception as e:

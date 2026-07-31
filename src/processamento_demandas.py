@@ -6,8 +6,8 @@ from pathlib import Path
 import streamlit as st
 
 
-def buscar_demandas(token: str, page: str) -> tuple:
-    url = 'https://api.trizy.com.br/cargo/demanda'
+def buscar_demandas(url: str, token: str, page: str) -> tuple:
+    url = url
 
     params = {
         'page': page,
@@ -61,11 +61,11 @@ def salvar_demandas(df: pd.DataFrame, path: str | Path) -> None:
 
 
 @st.cache_data
-def fluxo_busca_demandas(token: str, path: str | Path):
+def fluxo_busca_demandas(url: str, token: str, path: str | Path):
     pages = ['1', '2']
     lista_pagina_demandas = []
     for page in pages:
-        status_busca_demandas, dados_demandas = buscar_demandas(token, page)
+        status_busca_demandas, dados_demandas = buscar_demandas(url, token, page)
 
         if status_busca_demandas == 200:
             lista_pagina_demandas.append(dados_demandas)
